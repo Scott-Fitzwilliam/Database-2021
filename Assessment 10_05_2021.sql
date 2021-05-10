@@ -79,7 +79,7 @@ INSERT INTO Client(ClientID, Surname, GivenName, Gender) VALUES
 (103116463,	'Fitwilliam',	'Scott', 'M');
 
 
-INSERT INTO Event(TourName, EventMonth, EventDay, EventYear, Fee) VALUES
+INSERT INTO [Event](TourName, EventMonth, EventDay, EventYear, Fee) VALUES
 ('North', 'Jan',	9,	2016,	200),
 ('North',	'Feb',	13,	2016,	225),
 ('South', 'Jan',	9,	2016,	200),
@@ -99,5 +99,58 @@ INSERT INTO Booking(ClientID, TourName, EventMonth, EventDay, EventYear, Payment
 (2,	'West',	'Jan', 29, 2016, 225,	CONVERT(date, '17/12/2015', 103)),
 (3,	'West',	'Jan', 29, 2016, 200,	CONVERT(date, '18/12/2015', 103));
 
-SELECT *
-FROM CLIENT
+
+
+
+select ClientID, TourName, EventMonth, EventDay, EventYear, DateBooked, Payment
+from Booking B
+WHERE Payment > (SELECT AVG(Payment) FROM Booking)
+
+-- HAVING Payment > AVG(Payment)
+
+
+
+
+
+
+
+-- Group BY B.EventMonth, T.TourName
+-- ORDER BY B.EventMonth DESC, T.TourName ASC
+
+
+
+
+
+
+
+
+
+-- select B.EventMonth, T.TourName, COUNT(b.datebooked) AS 'Num Bookings'
+-- from client c
+-- INNER JOIN Booking B
+-- ON C.ClientID = B.ClientID
+-- INNER JOIN [Event] E
+-- ON (B.TourName = E.TourName) 
+-- AND (B.EventYear = E.EventYear) 
+-- AND (B.EventMonth = E.EventMonth) 
+-- AND (B.EventDay = E.EventDay)
+-- INNER JOIN TOUR T
+-- ON E.TourName = T.TourName
+-- Group BY B.EventMonth, T.TourName
+-- ORDER BY B.EventMonth DESC, T.TourName ASC
+
+-- Select C.GivenName, C.Surname, T.TourName, T.[Description], B.EventYear, B.EventMonth, B.EventDay, E.Fee, B.DateBooked, B.Payment
+-- FROM CLIENT C
+-- INNER JOIN Booking B
+-- ON C.ClientID = B.ClientID
+-- INNER JOIN [Event] E
+-- ON (B.TourName = E.TourName) 
+-- AND (B.eventYear = E.EventYear) 
+-- AND (B.EventMonth = E.EventMonth) 
+-- AND (B.EventDay = E.EventDay)
+-- INNER JOIN TOUR T
+-- ON E.TourName = T.TourName
+
+-- Query 1:
+-- Write a query that shows the client first name and surname, the tour name and description,
+-- the tour event year, month, day and fee, the booking date and the fee paid for the booking.
