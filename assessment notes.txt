@@ -1,0 +1,4 @@
+Create database Assessment10_05_2021 has been used so
+USE Assessment10_05_2021 is the way to access it.
+
+use square brackets [] around coloured words (reserved words) to make them white again so they can be used normally
